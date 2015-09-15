@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * Provides role function list
+ * By Khalim Harris - 2014
+ */
+function un_language_perms_get_role_functions() {
+  return array("Edit", "Publish");
+}
+
+function un_language_perms_get_permission_name($language_obj, $function) {
+  return "{$function} {$language_obj->name}";
+}
+
+function un_language_perms_permission() {
+  $un_language_perms = array();
+  $permission_functions = un_language_perms_get_role_functions();
+  $languages = language_list();
+
+  foreach ($languages as $lang_code => $language) {
+    foreach ($permission_functions as $permission_function) {
+      $permission_name = un_language_perms_get_permission_name($language, $permission_function);
+      $un_language_perms[$permission_name] = array(
+        "title" => t("$permission_name"),
+        "description" => t("Allow a role to {$permission_function} the language {$language->name}"),
+      );
+    }
+  }
+
+  $un_language_perms["Awesome Perm Name"] = array(
+      "title" => "DO THIS AWESOME THING",
+      "description" => "This let's you do stuff.",
+    );
+
+  return $un_language_perms;
+}
+

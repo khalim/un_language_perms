@@ -1,0 +1,8 @@
+name = UN Language Permissions
+description = Permissions Required for UN.org Workflow
+package = UN Roles and Permissions
+core = 7.x
+
+files[] = un_language_perms.module
+
+version = "7.x-0.1"
